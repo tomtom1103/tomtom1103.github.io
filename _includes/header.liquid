@@ -107,6 +107,14 @@
               {% endif %}
             {% endif %}
           {% endfor %}
+          {%- if site.cv_pdf %}
+          <!-- cv page -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ site.cv_pdf | prepend: 'assets/pdf/' | relative_url}}" target="_blank" rel="noopener noreferrer">cv
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          {%- endif %}
           {% if site.enable_darkmode %}
             <!-- Toogle theme mode -->
             <li class="toggle-container">

@@ -116,3 +116,6 @@
   </div>
   {% include scripts/wechatModal.liquid %}
 {% endif %}
+{%- if site.cv_pdf -%}
+<a href="{{ site.cv_pdf | prepend: 'assets/pdf/' | relative_url}}" target="_blank" rel="noopener noreferrer" title="CV"><i class="ai ai-cv"></i></a>
+{% endif %}

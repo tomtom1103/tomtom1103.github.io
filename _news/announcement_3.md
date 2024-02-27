@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-A paper has been accepted to CVPR 2024.
+A paper has been accepted to [CVPR 2024](https://cvpr.thecvf.com/).

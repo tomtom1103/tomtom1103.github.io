@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Two of my papers have been accepted to ICLR 2024.
+Two of my papers have been accepted to [ICLR 2024](https://iclr.cc/).
