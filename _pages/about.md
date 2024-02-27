@@ -2,16 +2,13 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle:
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
 
 news: true # includes a list of news items
 latest_posts: true # includes a list of the newest posts
@@ -19,8 +16,6 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I'm commited to research in generative models, computer vision, and machine learning. My main interests are in score-based (diffusion) models, conditional generative models, and inverse problems. Advised by Professor [Seoung Bum Kim](https://scholar.google.co.kr/citations?user=-ACQ0GAAAAAJ&hl=ko&oi=sra) and AI Researcher [Yonghyun Jeong](https://scholar.google.co.kr/citations?user=e9pHCjUAAAAJ&hl=ko&oi=sra), I've conducted joint research with Professor [Tae-Hyun Oh](https://ami.postech.ac.kr/members/tae-hyun-oh) and Professor [Sungbin Lim](https://www.sungbin-lim.net/) during my master's program.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
-
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+I enjoy learning about startups, listening to ([and making](https://vibe.naver.com/artist/4057878)) music, and tinkering with computers in my spare time. Feel free to reach out to me via linkedin or mail.
