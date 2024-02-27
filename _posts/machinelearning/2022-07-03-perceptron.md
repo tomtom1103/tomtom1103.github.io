@@ -1,7 +1,7 @@
 ---
 layout: post
-title: The Perceptron and Gradient Descent 
-tags: 
+title: The Perceptron and Gradient Descent
+tags:
 categories: machine-learning
 ---
 
@@ -13,15 +13,11 @@ categories: machine-learning
   - Taylor Expansion and the Chain Rule
   - Stochastic, Batch, and Minibatch Gradient Descent
 
-
-
 > 해당 포스트는 2021년 1학기 고려대학교 강필성 교수님의 '[다변량분석](https://github.com/pilsung-kang/multivariate-data-analysis)' 강의를 참고하여 작성되었습니다.
 >
 > 이미지는 강필성 교수님의 강의 슬라이드에서 발췌하였습니다.
 >
 > ~~A+ 감사했습니다 교수님~~
-
-
 
 ## Introduction
 
@@ -31,11 +27,7 @@ categories: machine-learning
 >
 > [The world is poorly designed. But copying nature helps.](https://www.youtube.com/watch?v=iMtXqTmfta0&ab_channel=Vox) Vox 에서 만든 Biomimicry 에 대한 영상이다. 굉장히 흥미롭다.
 
-
-
 생물시간에 우리의 뇌는 뉴런들끼리 서로 전기신호를 통해 정보를 전달한다고 배운다. 퍼셉트론은 이런 정보를 전달하는 가장 기초 단위인 뉴런을 흉내낸 지도학습 알고리즘이다. 처음엔 단일 분류기 모델로 고안되었지만, 수십년 후 딥러닝이란 학문의 시초가 되었다. 가장 복잡한 딥러닝 모델의 building block 도 결국 퍼셉트론에서 시작되기 때문이다.
-
-
 
 ## The Perceptron
 
@@ -44,7 +36,6 @@ categories: machine-learning
         {% include figure.liquid loading="eager" path="/assets/img/posts/machinelearning/perceptron/img1.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-
 
 퍼셉트론의 구조는 중앙의 점선에 따라 크게 전반부와 후반부로 나눌 수 있다. 전반부는 이전단계의 정보, 혹은 입력변수를 받는 node 들이고, 만약 사용하는 데이터셋의 설명변수의 수가 5개라면 (bias 까지 추가하여) 6개의 node 가 존재한다. 1개의 샘플의 설명변수에 해당하는 값들은 이 node 들에 들어가며, weight 들과 선형결합하여 하나의 scalar 값을 만든다.
 
@@ -65,7 +56,6 @@ $$
         {% include figure.liquid loading="eager" path="/assets/img/posts/machinelearning/perceptron/img2.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-
 
 실제로는 다양한 활성화 함수가 존재하지만, 가장 처음 접하는 대표적인 활성화 함수들은 Sigmoid, Tanh (Hyperbolic Tangent), ReLU (Rectified linear unit) 이다.
 
@@ -89,16 +79,15 @@ Classification 의 loss function 은 Cross Entropy Loss 를 많이 사용한다.
 
 **헷갈릴 법도 하지만, Loss function 은 데이터셋의 각 샘플에 대한 손실값이며, Cost function 은 전체 데이터에 대한 model 의 평균 손실값이다.**
 
-##  Gradient Descent
+## Gradient Descent
 
-경사하강법은 퍼셉트론의 weight 를 찾는데 가장 처음으로 고안된 알고리즘 중 하나다. 
+경사하강법은 퍼셉트론의 weight 를 찾는데 가장 처음으로 고안된 알고리즘 중 하나다.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="/assets/img/posts/machinelearning/perceptron/img3.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-
 
 학습의 시작 단계에선 최적의 weight 를 알 수 없으니 random 한 값으로 먼저 initialize 를 한다. 이후 Cost function 의 1차도함수를 구한 뒤, initialize 한 weight 를 1차 도함수에 넣어 기울기를 구한다. 이때 기울기의 반대방향으로 weight 값을 update 하는것이 경사하강법의 핵심이다. Cost function 을 최소화 하는 것이 목적이기 때문에, 해당 weight 의 기울기의 반대 방향으로 움직인다면 Cost function 의 값이 낮아지기 때문이다.
 
@@ -140,8 +129,6 @@ $$
 
 $$(y-t)$$ 는 만약 실제값과 예측치의 차이가 크다면 weight 많이 update 하는 역할을 하고, $$x_i$$ 는 해당 weight 를 update 할 때 해당 설명변수만 영향을 주도록 하는 장치라고 생각할 수 있다. $$\alpha$$ 를 Learning Rate 이라 하며, hyperparameter 이기 때문에 사용자가 설정을 한다.
 
-
-
 ### Stochastic, Batch, and Minibatch Gradient Descent
 
 앞서 설명한 경사하강법은 SGD (Stochastic Gradient Descent) 에 해당된다. 이는 datapoint 하나로 weight 를 업데이트 한 뒤 다음 데이터포인트로 넘어가는 방식으로, 세밀한 조정이 가능하지만 오래 걸린다는 단점이 있다.
@@ -152,7 +139,6 @@ $$(y-t)$$ 는 만약 실제값과 예측치의 차이가 크다면 weight 많이
     </div>
 </div>
 
-
 이해 반해 BGD (Batch Gradient Descent) 는 모든 샘플에 대하여 gradient 를 구한 뒤, gradient 의 평균을 통해 weight 를 업데이터 하는 방식이다. SGD 보다 훨씬 빠르지만, SGD 로 학습된 모델보다 성능이 떨어진다는 단점이 있다.
 
 <div class="row mt-3">
@@ -160,7 +146,6 @@ $$(y-t)$$ 는 만약 실제값과 예측치의 차이가 크다면 weight 많이
         {% include figure.liquid loading="eager" path="/assets/img/posts/machinelearning/perceptron/img5.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-
 
 SGD와 BGD 의 절충안을 찾은 알고리즘이 Minibatch GD 이다. 이는 전체 데이터셋을 $$N$$ 개의 샘플을 포함한 minibatch 로 나눈 뒤, 해당 batch 속 sample 들로 gradient 의 평균을 구한 뒤 weight 를 업데이트 한다.
 
@@ -181,40 +166,3 @@ Minibatch = 20 updates
 Weight update 에 사용되는 learning rate 를 지정할 때 주의해야 한다. 만약 learning rate 이 너무 크다면, 모델은 converge 하지 않고, 너무 작다면 학습에 너무 오랜 시간이 걸린다.
 
 사실 SGD, BGD, minibatch 는 굉장히 많은 optimizers (학습 알고리즘) 중 기초적인 모델들이다. Optimizing 알고리즘에 대한 연구는 많이 진행되고 있으며, 가장 많이 쓰이는 대표적인 optimizer 는 Adam, RMSProp 이 있다.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

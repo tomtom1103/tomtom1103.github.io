@@ -1,11 +1,11 @@
 ---
 layout: post
 title: Sentiment analysis with Reddit API on /r/stocks - Pt.1
-tags: 
+tags:
 categories: pythonic
 ---
-## Contents
 
+## Contents
 
 - What is Reddit?
 - The Reddit API using praw
@@ -20,7 +20,6 @@ categories: pythonic
         {% include figure.liquid loading="eager" path="/assets/img/posts/pythonic/redditstockanalysis1/1.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-
 
 현재 레딧은 전세계에서 19번째로 많이 방문되는 웹사이트고, 매일 5억명이 접속하여 정보를 공유하는 플랫폼이다. 인간의 뇌로 생각할 수 있는 주제가 있으면 그에 대한 Subreddit 가 존재한다는 말이 있다.
 
@@ -39,22 +38,13 @@ categories: pythonic
 먼저 manual scraping 은 논외다. 레딧의 [robots.txt](https://www.reddit.com/robots.txt) 를 확인해 보면 /post 가 Disallow 이기 때문에 Selenium 같은 browser automator 를 사용하는 방법은 윤리적이지 않다.
 
 ```html
-Disallow: /post
-Disallow: /submit
-Disallow: /goto
-Disallow: /*after=
-Disallow: /*before=
-Disallow: /domain/*t=
-Disallow: /login
-Disallow: /remove_email/t2_*
-Disallow: /r/*/user/
+Disallow: /post Disallow: /submit Disallow: /goto Disallow: /*after= Disallow: /*before= Disallow: /domain/*t= Disallow: /login Disallow:
+/remove_email/t2_* Disallow: /r/*/user/
 ```
 
 > robots.txt 중 일부.
 
 Octoparse 같은 Third-Party API 를 사용해도 되지만, 무료가 아니다. 그렇기 때문에 Reddit 에서 공식으로 지원하는 Reddit API 가 가장 좋다. 이 Reddit API 를 발급받아서 /r/stocks 의 감성분석을 진행해 보았다.
-
-
 
 ## The Reddit API using praw
 
@@ -70,7 +60,7 @@ Octoparse 같은 Third-Party API 를 사용해도 되지만, 무료가 아니다
 
 API 를 발급 받고 python으로 레딧 API 를 사용 가능하게 하는 라이브러리인 [praw](https://praw.readthedocs.io/en/latest/index.html) 를 pip 으로 설치하면 된다.
 
-``` python
+```python
 reddit = praw.Reddit(
     client_id=client_id,
     client_secret=client_secret,
@@ -112,7 +102,7 @@ def main():
 
 praw.Reddit 인스턴스를 설정해주었으면 /r/stocks 의 글을 긁어오는 두개의 함수를 설정해 주었다. parse_submission 함수는 하나의 포스팅의 metadata를 가져오는 함수다. 하나의 포스팅에는 굉장히 많은 metadata를 담고 있는데, reddit 의 개발자들이 주단위로 바꾸기 때문에 [docs](https://praw.readthedocs.io/en/latest/code_overview/models/submission.html?highlight=created_utc#praw.models.Submission) 를 참고해서 무엇이 있는지 확인해주면 좋다. 하지만 감성분석을 위해 primary key 에 해당되는 title, created_utc, selftext, score, id 만으로도 충분하다.
 
-main 함수는 /r/stocks 에 있는 포스팅을 데이터프레임으로 저장해주는 함수다. parse_submission 에 지정한 인자들이 데이터프레임의 column 들이 되고, 설정한 path 에 .pkl 로 저장해준다. 
+main 함수는 /r/stocks 에 있는 포스팅을 데이터프레임으로 저장해주는 함수다. parse_submission 에 지정한 인자들이 데이터프레임의 column 들이 되고, 설정한 path 에 .pkl 로 저장해준다.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -126,8 +116,6 @@ main 함수는 /r/stocks 에 있는 포스팅을 데이터프레임으로 저장
 
 위 포스트를 보면 아마존이란 기업을 Amazon 이라 쓰지 않고 티커인 AMZN 이라고 부른다. 그렇기 때문에 미국 증시에 상장되어 있는 티커 리스트를 확보한다면 해당 포스트가 어떤 기업에 대해 이야기 하고 있는지 쉽게 연관지을 수 있다.
 
-
-
 ## Ticker Parsing
 
 미국 증시는 크게 3개의 index 로 분류 할 수 있다.
@@ -140,7 +128,7 @@ main 함수는 /r/stocks 에 있는 포스팅을 데이터프레임으로 저장
 
 각 index 의 공식 웹에서 티커 리스트를 다운받는 방법이 있지만, pythonic 하게 (~~라이브러리 꼼수를 써서~~) 쉽게 가져올 수 있다.
 
-``` bash
+```bash
 !pip install yahoo_fin
 ```
 
@@ -158,7 +146,7 @@ sym3 = set(symbol for symbol in dow[0].values.tolist())
 
 야후에서 지원하는 yahoo_fin 라이브러리에서 stock_info 라는 함수를 불러오면 쉽게 원하는 인덱스의 티커를 불러 올 수 있다. 해당 티커들을 셋으로 묶은 뒤 parsing 하였다.
 
-``` python
+```python
 def tickers(*args):
     symbols = set.union(*args)
 
@@ -190,10 +178,4 @@ def tickers(*args):
 
 tickers 라는 함수를 정의하여 원하는 인덱스를 데이터프레임으로 저장하는 함수를 만들었다. 위에서 set 으로 저장한 티커들을 set.union 으로 묶어 준 뒤, 티커의 길이와 문자에 대한 argument 를 지정하였다. 먼저 my_list 는 티커명 뒤에 붙어있는 추가코드를 판별하기 위한 리스트다. W, R, P, Q 라는 문자열이 티커 뒤에 붙어있으면 모종의 이유로 거래가 정지된 티커를 의미한다. 만약 티커의 문자열 길이가 5 이상이고 티커의 끝에 my_list 의 인자가 있으면 해당 티커를 set 에서 지우고, 나머지를 sav_set 이란 set 에 저장한 뒤 데이터프레임으로 변환하고 .pkl 로 저장을 해준다.
 
-tickers 함수의 인자를 *args 로 받는 이유는 분석을 하다보니 특정 인덱스에서만 등장하는 티커에 대해 분석을 하고 싶을때가 생기기 때문이다. 만약 NASDAQ 에 있는 티커에 대해서만 분석을 하고싶다면, 인자로 sym3 만 리턴해주면 되는 원리다.
-
-
-
-
-
-
+tickers 함수의 인자를 \*args 로 받는 이유는 분석을 하다보니 특정 인덱스에서만 등장하는 티커에 대해 분석을 하고 싶을때가 생기기 때문이다. 만약 NASDAQ 에 있는 티커에 대해서만 분석을 하고싶다면, 인자로 sym3 만 리턴해주면 되는 원리다.

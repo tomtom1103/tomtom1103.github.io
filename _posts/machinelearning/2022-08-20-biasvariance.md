@@ -1,9 +1,8 @@
 ---
 layout: post
 title: Bias-Variance Decomposition
-tags: 
+tags:
 categories: machine-learning
-
 ---
 
 ## Contents
@@ -32,15 +31,11 @@ Bias-Variance Decomposition 은 모델의 일반화 성능을 높히기 위한 �
 
 특정 모델을 학습시켰을 때 test error 는 필연적으로 등장한다. Bias-Variance Decomposition 은 해당 error 가 Bias 에서 온 error 인지, variance 에서 온 error 인지, noise 에서 온 error 인지 평가해 줄 수 있다.
 
-
-
 ## Mathematical Definition
 
 $$P(X,Y)$$ 라는 분포에서 i.i.d 로 데이터셋 $$D = \{(\mathbf{x}_1, y_1), \dots, (\mathbf{x}_n,y_n)\}$$ 를 추출했다고 가정하자. Regression 모델을 가정했을 때, 모든 벡터 $$\mathbf{x_n}$$ 에 대한 정답 라벨 $$y_n$$ 은 unique 하지 않고, 분포에 따라 주어진다.
 
 > 영상에서 이 부분에 대해 갸우뚱하는 학생들을 위해 교수님이 직접 예시를 들어준다. 집에 대한 가격을 나타내는 데이터셋에 대해, 설명변수의 값이 모두 동일한 두개의 집은 무조건적으로 가격이 같지 않다.
-
-
 
 **Expected Label:**
 
@@ -50,19 +45,13 @@ $$
 
 i.i.d 로 추출한 수많은 데이터셋들에 대해 모델을 학습시킨 뒤, 새로운 샘플 $$\mathbf{x}$$ 에 대한 expected label 은 위와 같이 계산할 수 있다. 데이터셋 자체를 $$P(X,Y)$$ 라는 분포에서 i.i.d 추출했기 때문에 random variable 로 취급할 수 있으므로, continuous r.v. 의 Expectation 을 구하는 것과 동일하게 $$y$$ 값과 모델의 예측치들에 대해 $$y$$ 로 미분해주면 된다.
 
-
-
-
-
 **Expected Test Error (given $$h_D$$):**
 
 $$
 E_{(\mathbf{x},y) \sim P} \left[ \left(h_D (\mathbf{x}) - y \right)^2 \right] = \int\limits_x \! \! \int\limits_y \left( h_D(\mathbf{x}) - y\right)^2 \Pr(\mathbf{x},y) \partial y \partial \mathbf{x}.
 $$
 
-$$D$$ 라는 학습 데이터를 통해 알고리즘 $$\mathcal{A}$$ 를 학습시켰다고 가정하자 ($$h_D = \mathcal{A}(D)$$).  그렇다면 해당 모델 $$h_D$$ 의 Expected Test Error 은 (예시가 regression 이기 때문에 squared loss 사용) 위와 같이 구할 수 있다. $$D$$ 는 앞서 설명했듯이 random variable 로 취급할 수 있고, $$h_D$$ 는 $$D$$ 에 대한 function 이기 때문에 마찬가지로 random variable 이다.
-
-
+$$D$$ 라는 학습 데이터를 통해 알고리즘 $$\mathcal{A}$$ 를 학습시켰다고 가정하자 ($$h_D = \mathcal{A}(D)$$). 그렇다면 해당 모델 $$h_D$$ 의 Expected Test Error 은 (예시가 regression 이기 때문에 squared loss 사용) 위와 같이 구할 수 있다. $$D$$ 는 앞서 설명했듯이 random variable 로 취급할 수 있고, $$h_D$$ 는 $$D$$ 에 대한 function 이기 때문에 마찬가지로 random variable 이다.
 
 **Expected Classifier (given $$\mathcal{A}$$):**
 
@@ -71,8 +60,6 @@ $$
 $$
 
 **$$h_D$$ 와 $$\mathcal{A}$$ 를 구분짓는게 핵심이다.** $$h_D$$ 는 하나의 모델이고 $$\mathcal{A}$$ 는 학습될 수 있는 모든 모델이다. 그렇기 때문에 위와 같이 expected classifer 은 분포 $$P$$ 에서 추출된 $$D$$ 로 학습된 모든 모델의 expectation 이라고 할 수 있다.
-
-
 
 **Expected Test Error (given $$\mathcal{A}$$):**
 
@@ -84,8 +71,6 @@ $$
 
 모든 모델에 대한 expectation 을 구했기 때문에 이제 **가능한 모든 모델에 대한 expected error 을 표현 할 수 있다.** 우리의 목적은 $$P(X,Y)$$ 에서 추출된 $$D$$ 로 학습된 모델 $$\mathcal{A}$$ 의 expected 성능을 구하는 것이기 때문에, 위 식이 이를 나타낸다. 이때 해당 식을 decompose 하면 정확히 어떻게 모델의 에러가 구성되어있는지 볼 수 있다.
 
-
-
 ## Decomposition of Expected Test Error (given $$\mathcal{A}$$)
 
 $$
@@ -96,7 +81,7 @@ E_{\mathbf{x},y,D}\left[\left[h_{D}(\mathbf{x}) - y\right]^{2}\right]
 \\\\
 = E_{\mathbf{x}, D}\left[(\bar{h}_{D}(\mathbf{x}) - \bar{h}(\mathbf{x}))^{2}\right]
 \\
-+2 \mathrm{\;} E_{\mathbf{x}, y, D} \left[\left(h_{D}(\mathbf{x}) - \bar{h}(\mathbf{x})\right)\left(\bar{h}(\mathbf{x}) - y\right)\right] 
++2 \mathrm{\;} E_{\mathbf{x}, y, D} \left[\left(h_{D}(\mathbf{x}) - \bar{h}(\mathbf{x})\right)\left(\bar{h}(\mathbf{x}) - y\right)\right]
 \\
 +E_{\mathbf{x}, y} \left[\left(\bar{h}(\mathbf{x}) - y\right)^{2}\right]
 $$
@@ -132,66 +117,8 @@ $$
     </div>
 </div>
 
-
-이상적인 알고리즘은 Bias 와 Variance 가 낮지만, 현실적으로 tradeoff 가 발생하기 때문에 필연적으로 둘중 하나는 크다. 보통  Model Compexity 가 낮은 알고리즘들 (ex. LogReg, LDA) 는 High Bias Low Variance 이며, Model Complexity 가 높은 알고리즘들 (ex. NN, Full DT, SVM) 은 Low Bias High Variance 이다.
+이상적인 알고리즘은 Bias 와 Variance 가 낮지만, 현실적으로 tradeoff 가 발생하기 때문에 필연적으로 둘중 하나는 크다. 보통 Model Compexity 가 낮은 알고리즘들 (ex. LogReg, LDA) 는 High Bias Low Variance 이며, Model Complexity 가 높은 알고리즘들 (ex. NN, Full DT, SVM) 은 Low Bias High Variance 이다.
 
 우측 하단의 그림을 보면 Model complexity 가 높을수록 높은 Variance 를 가졌다는 의미가 와닿는다. Training sample 에 대한 에러율은 0에 수렴하지만, 같은 분포에서 추출한 또다른 데이터셋인 testing sample 에 대한 에러는 굉장히 높다. 이는 데이터셋의 작은 변화에도 모델이 민감하게 반응한다는 것을 의미하며, 자주 접하는 과적합이 해당 모델들의 고질적인 문제를 표현한다.
 
 > Low Bias High Variance 를 가진 High complexity 모델들은 과적합에 취약하다는 것은 Bias-Variance Decomposition 에서 수학적으로 증명된 것이다. 그렇기 때문에 Overfitting 에 대한 연구들은 전부 High Variance 를 가진 딥러닝 알고리즘들을 예시로 든다.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

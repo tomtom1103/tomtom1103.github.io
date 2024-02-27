@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Sentiment analysis with Reddit API on /r/stocks - Pt.2
-tags: 
+tags:
 categories: pythonic
 ---
 
@@ -20,11 +20,11 @@ Reddit API 로 /r/stocks 의 daily 포스팅을 성공적으로 가져왔으면,
 
 그렇기 때문에 수동 parsing 이나 NLTK 같은 무거운 라이브러리로 클리닝을 할 필요 없고, 가벼운 clean-text 라이브러리를 사용하였다.
 
-``` bash
+```bash
 !pip install clean-text
 ```
 
-``` python
+```python
 from cleantext import clean
 import datetime
 
@@ -59,7 +59,7 @@ print(datetime.datetime.fromtimestamp(time.time())) #Current datetime
 
 파이썬의 경우 time모듈의 time 함수가 현재 Unix time 을 리턴해주며, datetime모듈의 datetime 클래스의 fromtimestamp 함수가 Unix time 을 datetime 으로 바꿔서 리턴해준다. 그렇기 때문에 cleaner 함수에 이 부분을 추가하여 모든 포스팅이 작성된 시간을 datetime 으로 바꿔주었다.
 
-> Unix time 관련해서 Y2K 사건과 비슷한 [Y2K38](https://en.wikipedia.org/wiki/Year_2038_problem) 사건이 예정되어 있다. Unix time 을 32bit integer 값으로 저장하는 시스템들은 언젠간 $$2^{32}$$ bit 까지 도달한 Unix time 을 처리하지 못하고 Unix time 을 Unix Epoch의 $$-2^{31}$$ 초 **전**, 즉 1901년 12월 13일 로 롤백 할 것이다. 이 롤백은 2038년 1월 19일로 예정되어 있기 때문에 Y2K38 이란 이름이 붙었고, Y2K 와 준하는 사건이라고 보는 사람들도 있다. 
+> Unix time 관련해서 Y2K 사건과 비슷한 [Y2K38](https://en.wikipedia.org/wiki/Year_2038_problem) 사건이 예정되어 있다. Unix time 을 32bit integer 값으로 저장하는 시스템들은 언젠간 $$2^{32}$$ bit 까지 도달한 Unix time 을 처리하지 못하고 Unix time 을 Unix Epoch의 $$-2^{31}$$ 초 **전**, 즉 1901년 12월 13일 로 롤백 할 것이다. 이 롤백은 2038년 1월 19일로 예정되어 있기 때문에 Y2K38 이란 이름이 붙었고, Y2K 와 준하는 사건이라고 보는 사람들도 있다.
 
 ## Sentiment Analysis using flair
 
@@ -104,7 +104,7 @@ def flairme(brr):
 ```python
 sentiment_model.predict(sentence)
 probability.append(sentence.labels[0].score)
-sentiment.append(sentence.labels[0].value)     
+sentiment.append(sentence.labels[0].value)
 ```
 
 처음에 선언한 sentiment_model 엔 predict 라는 함수가 있다. 해당 함수가 실질적인 감성분석을 해주는 함수며, 내부적으로 인자로 받은 sentence 에 label 을 추가하여 리턴한다. sentence.labels[0].values 가 해당 문장의 Positive/Negative 태그이며, sentence.labels[0].score 가 해당 문장의 감성태그의 신뢰도 이다. 이 값들을 리스트에 저장하여 기존 인자로 받은 데이터프레임에 새로운 칼럼으로 선언하면 간단한 감성분석이 완료되는 것이다.
@@ -161,7 +161,7 @@ def tickercount(brr):
     return brr
 ```
 
-처음 함수를 짜기 시작했을 때 간단하게 해당 티커가 포스트에 있는지 확인하는 방법을 str.isin() 으로 테스트를 해봤으나, str.isin() 은 정확하지 않기 때문에 flair.data.Sentence 가 기본적으로 제공하는 토큰 파싱을 기반으로 티커가 있는지 확인하였다. 
+처음 함수를 짜기 시작했을 때 간단하게 해당 티커가 포스트에 있는지 확인하는 방법을 str.isin() 으로 테스트를 해봤으나, str.isin() 은 정확하지 않기 때문에 flair.data.Sentence 가 기본적으로 제공하는 토큰 파싱을 기반으로 티커가 있는지 확인하였다.
 
 ```python
     sentences = [flair.data.Sentence(post) for post in brr['selftext']] #한 포스트를 센텐스화
@@ -216,6 +216,3 @@ def tickercount(brr):
 최종적으로 리턴되는 데이터프레임은 다음과 같다. 해당 포스트에 티커에 대한 멘션이 없으면 0을, 티커에 대한 멘션이 있으면 해당 티커와 티커가 몇번 멘션되는지 추가가 되어있다.
 
 이 tickercount 함수를 짜면서 아직 해결하지 못한 문제들이 몇가지 있다. 예를 들어 /r/stocks 의 사용자들은 티커명 말고도 ATH (all time high), MDD (maximum draw down), VIX (Volitality index) 같은 약어들을 사용한다. 해당 약어들도 중요한 지표이기 때문에 모든 약어를 정리한 파일이 필요하다. 그리고 지금까지의 포스팅은 /r/stocks 감성분석의 제일 기초적인 뼈대만 마련한 것이지, 나아갈 수 있는 방향은 무궁무진하다. 해당 티커와 감성과 실제 주가의 시계열 분석과 같은 모듈을 계속 추가해 나갈 수 있을 것이다.
-
-
-
