@@ -183,12 +183,21 @@ let transTheme = () => {
   }, 500);
 };
 
+// let initTheme = (theme) => {
+//   if (theme == null || theme == "null") {
+//     const userPref = window.matchMedia;
+//     if (userPref && userPref("(prefers-color-scheme: dark)").matches) {
+//       theme = "dark";
+//     }
+//   }
+
+//   setTheme(theme);
+// };
+
 let initTheme = (theme) => {
+  // If no theme is stored or the stored theme is "null", default to light
   if (theme == null || theme == "null") {
-    const userPref = window.matchMedia;
-    if (userPref && userPref("(prefers-color-scheme: dark)").matches) {
-      theme = "dark";
-    }
+    theme = "light"; // Default to light theme
   }
 
   setTheme(theme);
