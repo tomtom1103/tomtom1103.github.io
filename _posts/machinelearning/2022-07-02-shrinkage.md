@@ -3,6 +3,7 @@ layout: post
 title: Ridge Regression, LASSO, and ElasticNet
 tags:
 categories: machine-learning
+thumbnail: /assets/img/posts/machinelearning/shrinkage/img1.png
 ---
 
 ## Contents

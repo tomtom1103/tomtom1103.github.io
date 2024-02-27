@@ -3,6 +3,7 @@ layout: post
 title: Bias-Variance Decomposition
 tags:
 categories: machine-learning
+thumbnail: /assets/img/posts/machinelearning/biasvariance/img1.png
 ---
 
 ## Contents

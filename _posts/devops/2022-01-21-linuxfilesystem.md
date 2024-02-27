@@ -3,6 +3,7 @@ layout: post
 title: The Linux File System
 tags:
 categories: knowledge
+thumbnail: /assets/img/posts/devops/linuxfilesystem/img4.png
 ---
 
 ## Contents

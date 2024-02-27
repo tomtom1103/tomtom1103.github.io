@@ -3,6 +3,7 @@ layout: post
 title: Sentiment analysis with Reddit API on /r/stocks - Pt.2
 tags:
 categories: pythonic
+thumbnail: /assets/img/posts/pythonic/redditstockanalysis2/2.png
 ---
 
 ## Contents

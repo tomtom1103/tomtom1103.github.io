@@ -3,6 +3,7 @@ layout: post
 title: The Perceptron and Gradient Descent
 tags:
 categories: machine-learning
+thumbnail: /assets/img/posts/machinelearning/perceptron/img1.png
 ---
 
 ## Contents
