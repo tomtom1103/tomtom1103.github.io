@@ -142,4 +142,36 @@ while being **20 times faster!**
 <br>
 
 Diffusion models are considered very attractive in the domain of stylization due to its potency and expressiveness.
-While gan based methods
+While GAN based stylization methods have been thoroughly explored, stylization via diffusion models are relatively under explored.
+GAN based stylization methods often fail in preserving rarely-seen attributes in images, and Diffusion based stylization methods
+require many style images in order to perform stylization (Multi-shot).
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="/assets/img/portfolio/osasis/osasis.png" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    Note: Me and the authors of OSASIS still haven't decided on how to pronounce the model. We're going back and forth on 
+    either making the first S silent (oʊˈeɪsɪs, like wonderwall) or not (əʊˈsasɪs, like oh-SAH-sis).
+</div>
+
+
+To this end, we've proposed One-Shot Structure-Aware Stylized Image Synthesis (OSASIS), a diffusion model capable of disentangling the structure
+and semantics of an image, and **stylizing real images with just a single reference style.**
+OSASIS leverages the CLIP space, and we train the model by making sure the CLIP space between four images stay parallel,
+respective to its counterpart. We also formulate a Structure Preserving Network (SPN) that ensures the stylized output
+retains the structure of the original input image.
+
+<img-comparison-slider class="coloured-slider">
+  {% include figure.liquid path="assets/img/portfolio/osasis/osasis_left.jpg" class="img-fluid rounded z-depth-1" slot="first" %}
+  {% include figure.liquid path="assets/img/portfolio/osasis/osasis_right.jpg" class="img-fluid rounded z-depth-1" slot="second" %}
+</img-comparison-slider>
+<div class="caption">
+    Qualitative/Quantitative comparisons of OSASIS against baseline models.
+</div>
+
+Designed to be a **training dataset-free one-shot model** (only requiring a single reference image), OSASIS is robust in preserving
+the structure of rarely-seen attributes of a dataset!
+
+
