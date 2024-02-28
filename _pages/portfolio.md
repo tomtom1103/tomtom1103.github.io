@@ -227,10 +227,7 @@ Tools used:
 
 For the hackathon, I lead team **IRDIS** (Immediate Rescue Based Disaster Response System), where we were tasked to develp a disaster response solution.
 
-developed and trained a satellite-image segmentation model, developed a disaster response solution ranking areas in need of immediate rescue via segmentation maps and the Analytical Hierarchy Process
-
-We decided to utilize the [xView2 Dataset](https://xview2.org/dataset), containing 22K satellite images. Each image has a pre/post disaster counterpart, and labels containing information about
-what disaster had occured, the level of damage, and segmentation labels for roads and buildings.
+We decided to utilize the [xView2 Dataset](https://xview2.org/dataset), containing 22K satellite images. Each image has a pre/post disaster counterpart, and labels containing information about what disaster had occured, the level of damage, and segmentation labels for roads and buildings.
 
 
 <div class="row mt-3">
