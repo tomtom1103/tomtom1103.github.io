@@ -32,10 +32,10 @@ images:
 Conditional diffusion models usually take in text, and two different types of conditions to generate an image.
 
 1. **Local conditions**, which conditions the model on structural information through primitives like depth maps and canny edges.
-2. **Global conditoins**, which conditions the model on semantic information (color, identity, texture, etc).
+2. **Global conditions**, which conditions the model on semantic information (color, identity, texture, etc).
 
 However, these models suffer from two limitations: they lack the ability to disentangle the relative depth of multiple local conditions,
-and are inable to localize global conditions to a specific area.
+and are unable to localize global conditions to a specific area.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -110,7 +110,7 @@ Tools used:
 
 <br>
 
-Diffusion models are also refered to as Score-Based Models, due to its recent findings of how they're also able to predict the score of random variables.
+Diffusion models are also referred to as Score-Based Models, due to its recent findings of how they're also able to predict the score of random variables.
 These predicted scores can be utilized directly into a PF-ODE (Probability Flow ODE) that diffusion models follow: providing ways to encode/decode images
 without any stochasticity. This is favorable for editing real images through diffusion models: The only way to manipulate real images are to first encode them into latents that will result in the image itself after solving the PF-ODE. 
 
@@ -225,7 +225,7 @@ Tools used:
 
 <br>
 
-For the hackathon, I lead team **IRDIS** (Immediate Rescue Based Disaster Response System), where we were tasked to develp a disaster response solution.
+For the hackathon, I lead team **IRDIS** (Immediate Rescue Based Disaster Response System), where we were tasked to develop a disaster response solution.
 
 We decided to utilize the [xView2 Dataset](https://xview2.org/dataset), containing 22K satellite images. Each image has a pre/post disaster counterpart, and labels containing information about what disaster had occured, the level of damage, and segmentation labels for roads and buildings.
 
