@@ -24,7 +24,7 @@ impressum_path: # set to path to include impressum link in the footer, use the s
 # Custom CV override
 # -----------------------------------------------------------------------------
 
-cv_pdf: Tom_Resume_0228.pdf
+cv_pdf: Tom_Resume_0812.pdf
 
 # -----------------------------------------------------------------------------
 # Theme
